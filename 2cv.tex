@@ -1,0 +1,311 @@
+%!TEX TS-program = xelatex
+\documentclass[]{friggeri-cv}
+\usepackage{afterpage}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{smartdiagram}
+\usepackage{fontspec}
+
+\usepackage{metalogo}
+\usepackage{dtklogos}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{mindmap,shadows}
+                            
+
+
+\hypersetup{
+    pdftitle={CV-Maximilian Zuleger},
+    pdfauthor={Maximilian Zuleger},
+    pdfsubject={cv},
+    pdfkeywords={cv,maxi,zuleger,software},
+    colorlinks=false,           % no lik border color
+    allbordercolors=white       % white border color for all
+}
+\smartdiagramset{
+    module maximum weight=1cm,
+    bubble center node font = \footnotesize,
+    bubble node font = \footnotesize,
+    % specifies the minimum size of the bubble center node
+    bubble center node size = 0.2cm,
+    %  specifies the minimum size of the bubbles
+    bubble node size = 0.2cm,
+    % specifies which is the distance among the bubble center node and the other bubbles
+    distance center/other bubbles = 0.3cm,
+    % sets the distance from the text to the border of the bubble center node
+    distance text center bubble = 0.4cm,
+    % set center bubble color
+    bubble center node color = pblue,
+    % define the list of colors usable in the diagram
+    set color list = {lightgray, materialcyan, orange, green, materialorange, materialteal, materialamber, materialindigo, materialgreen, materiallime},
+    % sets the opacity at which the bubbles are shown
+    bubble fill opacity = 0.6,
+    % sets the opacity at which the bubble text is shown
+    bubble text opacity = 0.5,
+}
+
+\addbibresource{bibliography.bib}
+\RequirePackage{xcolor}
+\definecolor{pblue}{HTML}{0395DE}
+
+\begin{document}
+\header{Maximilian~}{Zuleger}
+      {Software Engineer}  
+    
+% Fake text to add separator      
+%\fcolorbox{white}{gray}{\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule}{%
+%.....
+%}}
+\hspace{5cm}
+\vspace{0.4cm}
+% In the aside, each new line forces a line break
+\begin{aside}
+  %\includegraphics[scale=0.12]{img/pb.jpg}
+  \includegraphics[scale=0.12]{img/maxi2q.jpg}
+  \section{Address}
+    Friedrich-Ebert-Str 18B
+    85055 Ingolstadt
+    ~
+  \section{Telephone}
+    +49 176 63793909
+    ~
+  \section{Mail}
+    \href{mailto:kontakt@max-z.de}{\textbf{kontakt@}max-z.de}
+    ~
+  \section{Web \& Git}
+    \href{https://max-z.de}{max-z.de}
+    \href{https://www.linkedin.com/in/maximilian-zuleger-722687129}{LinkedIn}
+    \href{https://github.com/maxizu}{github.com/maxizu}
+    \href{https://bright.eco}{bright.eco}
+    ~
+  % use  \hspace{} or \vspace{} to change bubble size, if needed
+  \section{Programming}
+     \smartdiagram[bubble diagram]{
+        \textbf{Java},
+        \textbf{C\#},
+        \textbf{Kotlin},
+        \textbf{Other},
+        \textbf{Web},
+        \textbf{Dart}
+    }    
+    \vspace{0.3cm}
+\begin{center}
+  \section{Personal Skills}
+  \vspace{0.35cm}
+    \smartdiagram[bubble diagram]{
+        \textbf{Loyal},
+        \textbf{Efficient},
+        \textbf{Realistic},
+        \textbf{Accurate},
+        \textbf{Flexible},
+        \textbf{Calm}
+    }
+\end{center}
+    ~
+\end{aside}
+~
+~
+\section{Experience}
+\begin{entrylist}
+    \entry
+    {09/18 - Now}
+    {Software Engineer}
+    {AUDI AG}
+    {Software Developer at the Audi Software Development Center\\}
+     \entry
+    {01/10 - Now}
+    {Independent Software Developer}
+    {Mz}
+    {Software Developer, Website: max-z.de, Ingolstadt/Germany\\}
+    \entry
+    {10/17 - 09/18}
+    {Software Engineer - E-Mobility}
+    {AUDI AG}
+    {Software Engineer and Project Manager for public charging \\}
+    \entry
+    {02/17 - 08/17}
+    {Master Thesis - Electric Car}
+    {AUDI AG}
+    {Master thesis about Load Balancing for Charging Stations within Smart City, MQTT and Machine Learning, Ingolstadt/Germany\\}
+    \entry
+    {03/16 - 08/17}
+    {Student Trainee}
+    {GIGATRONIK AG}
+    {Software Developer, Machine Learning and Big Data,  Ingolstadt/Germany\\}
+    \entry
+    {08/15 - 3/16}
+    {Bachelor Thesis - Neural Networks}
+    {GIGATRONIK AG}
+    {Bachelor thesis about neural networks for image recognition in automotive applications, Machine (Deep) Learning, Ingolstadt/Germany\\}
+    \entry
+    {06/15 - 10/16}
+    {Student Trainee}
+    {Virtual Innovation Forum e.V. - Technische Hochschule Ingolstadt}
+    {Modelling the fortress of Ingolstadt for the Virtual Innovation Forum at the Technische Hochschule Ingolstadt, Ingolstadt/Germany\\}
+    %\entry
+    %{04/15 - 08/15}
+    %{Student Trainee}
+    %{GIGATRONIK AG}
+    %{Automotive Software Engineer, Gigatronik AG, Ingolstadt/Germany\\}
+  \entry
+    {09/14 - 03/15}
+    {Emission Test Laboratory Manager Assistant Intern}
+    {BMW of North America}
+    {Software Developer for BMW of North America, Los Angeles/USA\\}
+  \entry
+    {07/12 - 8/12}
+    {Intern}
+    {Contabo GmbH}
+    {Intern as Web Developer at Contabo GmbH, Munich/Germany\\}
+    \entry
+    {03/11 - 04/11}
+    {Intern}
+    {EUC SYD}
+    {Electrical engineering and information technology,  internship abroad, Sønderborg/Denmark\\}
+    %\entry
+    %{02/11 - 07/11}
+    %{Intern}
+    %{FOS Munich}
+    %{Electrical engineering and information technology, Workshops FOS/BOS %Munich, Munich/Germany\\}
+    \entry
+    {09/10 - 02/11}
+    {Intern}
+    {Siemens AG}
+    {Intern as Mechanical Engineer at Siemens, Munich/Germany\\}
+    %\entry
+    %{07/09 - 07/09}
+    %{Intern}
+    %{Rohde \& Schwarz GmbH \& Co. KG}
+    %{Intern as a System Administrator, Setting up a server and managing the IT infrastructure of %Rohde \& Schwarz, Munich/Germany\\}
+\end{entrylist}
+
+\section{Education}
+\begin{entrylist}
+  \entry
+    {2016 - 2017}
+    {Master's Degree in Computer Science}
+    {Technische Hochschule Ingolstadt}
+    {Subject area: Security and Safety, Ingolstadt/Germany\\}
+  \entry
+    {2012 - 2016}
+    {Bachelor's Degree in Computer Science}
+    {HAW Ingolstadt}
+    {Optional courses: Math and Automotive Engineering, Ingolstadt/Germany}
+\end{entrylist}
+
+\newpage
+
+\begin{aside}
+~
+~
+  \section{OS Preference}
+  \textbf{Windows}\includegraphics[scale=0.40]{img/5stars.png}
+    \textbf{Linux/Unix}\includegraphics[scale=0.40]{img/4stars.png}
+    \textbf{MacOS}\includegraphics[scale=0.40]{img/4stars.png}
+    ~
+    \section{Languages}
+    \textbf{German}\includegraphics[scale=0.40]{img/5stars.png}
+    \textbf{English}\includegraphics[scale=0.40]{img/4stars.png}
+    ~
+    \section{Places Lived}
+    ~
+    \includegraphics[scale=0.08]{img/ger.png}
+    Germany (26 years)
+    ~
+    \includegraphics[scale=0.07]{img/usa.png}
+    United States of America (6 months)
+    ~
+    \includegraphics[scale=0.11]{img/den.png}
+    Denmark (4 weeks)
+    ~
+    \section{Focus}
+    ~
+    \textbf{Software Developer\\}\includegraphics[scale=0.40]{img/5stars.png}
+    \textbf{Extreme Programming\\}\includegraphics[scale=0.40]{img/5stars.png}
+     \textbf{Machine Learning\\}\includegraphics[scale=0.40]{img/4stars.png}
+    ~
+\end{aside}
+\section{Social Commitment}
+\begin{entrylist}
+     \entry
+    {Since 10/19}
+    {Volleyball}
+    {ESV Ingolstadt-Ringsee e.V.}
+    {Member of the 1. Men's team\\}
+     \entry
+    {Since 05/17}
+    {Environmental Commitment}
+    {BRIGHT.eco}
+    {Commitment about the change towards electric cars \\(Trustmark - .ECO community)\\}
+     \entry
+    {Since 10/17}
+    {Student Association}
+    {Students' Life e.V.}
+    {Member of Honour \\
+    Previously: Chairman (7/15 - 10/17), Member (7/13 - 07/15)\\}
+    \entry
+    {10/13 - 01/20}
+    {Volleyball Coach}
+    {Katholische Universität Eichstätt/Ingolstadt}
+    {Volleyball Coach of the Catholic University Ingolstadt/Eichstätt\\}
+    \entry
+    {08/13 - 10/17}
+    {Student Council}
+    {Technische Hochschule Ingolstadt}
+    {Student chairman of the Senate,\\ Member of the spokesmen-council and the student convention\\ 
+    Previously including: (8/13 - 8/16) \\Member of the Senate, spokesmen-council and student convention, Student chairman of the Faculty of Science}
+    
+        %{Student chairman of the Senate,\\ Member of the spokesmen-council and the student convention\\ %Previously: \\- Member Senate, spokesmen-council and student convention (8/15 – 8/16)\\- Student chairman %of the Faculty of Science and student convention, Member of the student spokesmen-council (8/14 – %8/15)\\- Member of the Faculty of Science and student convention (8/13 – 8/14)\\}
+    \entry
+    {06/14 - 10/17}
+    {Music Bands Commissioner}
+    {Technische Hochschule Ingolstadt}
+    {Music bands Commissioner and Leader of the Big-Band and several other Bands\\}
+    \entry
+    {03/14 - 10/17}
+    {Investment Club}
+    {Technische Hochschule Ingolstadt}
+    {Member of the Investment Club and the Investment Confederation (IT)\\}
+\end{entrylist}
+\section{Honors \& Awards}
+\begin{entrylist}
+\entry
+    {11/18}
+    {Bavarian Culture Award}
+    {Bavarian State Ministry Science and Art}
+    {}
+  %\entry
+   % {10/16}
+    %{AUDI Hackathon Finalist}
+    %{Audi AG}
+    %{}
+  \entry
+    {04/11}
+    {EUC SYD Best Trainee}
+    {EUY SYD}
+    {}
+\end{entrylist}
+
+\section{Certifications}
+\begin{entrylist}
+  \entry
+    {Since 2010}
+    {Online Courses}
+    {Udacity , Video2Brain, Google, Audi}
+    {Certificates from several online courses}
+\end{entrylist}
+
+\section{Other Info}
+Additional information about me:\\
+\emph{Due to my study and serveral different jobs in varied areas of the software development I gained extensively knowledge about diverse technologies. I would be happy to provide any additional information you require regarding my history and know how.}
+~
+\begin{flushleft}
+\emph{\today}
+\end{flushleft}
+\begin{flushright}
+\includegraphics[scale=1]{img/covering.jpg}\\
+\emph{Maximilian C. Zuleger}
+\end{flushright}
+\clearpage
+\end{document}

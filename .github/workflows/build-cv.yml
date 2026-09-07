@@ -1,0 +1,34 @@
+name: Build CV PDF
+
+on:
+  push:
+    paths:
+      - '2cv.tex'
+      - '*.cls'
+      - '*.sty'
+      - 'sty/**'
+      - '*.otf'
+      - '*.ttf'
+      - 'img/**'
+      - '.github/workflows/build-cv.yml'
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX (xelatex)
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: 2cv.tex
+          latexmk_use_xelatex: true
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2cv-pdf
+          path: 2cv.pdf
+          retention-days: 90

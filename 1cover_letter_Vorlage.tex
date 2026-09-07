@@ -1,0 +1,135 @@
+
+\documentclass[11pt,a4paper,sans]{moderncv}
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\makeatletter
+\patchcmd{\makeletterhead}% <cmd>
+  {\raggedright \@opening}% <search>
+  {\@opening}% <replace>
+  {}{}% <success><failure>
+\makeatother
+% moderncv themes
+\moderncvstyle{classic}
+\moderncvcolor{green}
+\usepackage[utf8]{inputenc}
+\usepackage{afterpage}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{smartdiagram}
+\usepackage{fontspec}
+\usepackage{tikz}
+\usetikzlibrary{mindmap,shadows}
+
+\usepackage{metalogo}
+\usepackage{dtklogos}
+
+\usepackage[scale=0.75]{geometry}
+\RequirePackage{xcolor}
+\definecolor{pblue}{HTML}{3399cc}
+
+\definecolor{white}{RGB}{255,255,255}
+
+\definecolor{gray}{HTML}{4D4D4D}
+
+\colorlet{fillheader}{gray}
+\colorlet{header}{white}
+
+\colorlet{textcolor}{gray}
+\colorlet{headercolor}{gray}
+
+
+
+\RequirePackage[quiet]{fontspec}
+\RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
+
+\newfontfamily\bodyfont
+[BoldFont=texgyreheros-bold.otf,
+ItalicFont=texgyreheros-italic.otf,
+BoldItalicFont=texgyreheros-bolditalic.otf]
+{texgyreheros-regular.otf}
+\newfontfamily\thinfont[]{Lato-Hairline.ttf}
+\newfontfamily\headingfont[]{texgyreheros-bold.otf}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont
+[Mapping=tex-text, Color=textcolor,
+BoldFont=texgyreheros-bold.otf,
+ItalicFont=texgyreheros-italic.otf,
+BoldItalicFont=texgyreheros-bolditalic.otf
+]
+{texgyreheros-regular.otf}
+
+\setmathfont{texgyreheros-regular.otf}
+%%%%%%%%%%
+% Header %
+%%%%%%%%%%
+\newcommand{\rolefont}{%
+  \fontsize{14pt}{24pt}\selectfont%
+  \thinfont%
+  \color{white}%
+}
+
+\newcommand{\header}[3]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node [rectangle, fill=fillheader, anchor=north, minimum width=\paperwidth, minimum height=3.5cm] (box) at (current page.north){};
+    \node[inner sep=0pt] (russell) at (14.8,1.3)
+    {\includegraphics[scale=0.5]{img/logo.png}};
+    
+    \node [right=-8.0cm] (name) at (box) {%
+      \fontsize{30pt}{62pt}\color{header}%
+      {\thinfont #1}{\bodyfont  #2}
+    };
+    \node [below left=1cm of name] (job) at (name.south) {%
+      \fontsize{14pt}{24pt}\color{pblue}%
+      \bodyfont #3%
+    };
+    
+  \end{tikzpicture}
+  \vspace{0.5cm}
+}
+
+\newcommand{\rolefont}{%
+  \fontsize{14pt}{24pt}\selectfont%
+  \thinfont%
+  \color{white}%
+}
+\usepackage{ragged2e}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+\header{Maximilian~}{Zuleger}
+      {Software Engineer}  
+
+\name{Maximilian Christian}{Zuleger}
+\title{Resumé title}
+\address{Erzbergerstr. 10}{82008 Unterhaching}{}
+\phone[mobile]{+49~(176)~63~793909}                   %
+\email{kontakt@max-z.de}                               % optional, remove / comment the 
+\homepage{www.max-z.de}
+%Company
+\recipient{Company Recruitment team}{Company, Inc.\\123 somestreet\\some city}
+\date{\today}
+\opening{Dear Sir or Madam,}
+\closing{}
+%\enclosure[Attached]{curriculum vit\ae{}}
+\makelettertitle\justifying
+As a student of computer science with extensive experience, I am interested in learning more about the application of computers in the xxx industry. Therefore I would like to apply for a position as an xxx in the xxx. The xx should be for a period of xx months starting in xxx.
+\\~\\
+I am a student at the Technische Hochschule Ingolstadt (technical University) in Ingolstadt, Germany where I have been studying since October 2012.
+Before I began my studies at the University, I completed several internships in metal working, electronic engineering and software engineering. During this time I gained knowledge and practical experience in a wide range of different fields.
+\\~\\
+I have been interested in computers since I was seven years old. My current area of expertise is machine learning, programming languages and robotics. While my studies I worked as a software developer in the automotive industry at BMW and acquired know-how at several suppliers in Ingolstadt. My responsibilities included the reinforcement on autonomous driving. In addition to that I work as an independent software engineer in varying IT projects. 
+\\~\\
+At the Technische Hochschule I am a member and chairman of different communities and political representative of the student body of said University. In my free time I coach the Volleyball team and play the e-guitar in various bands. Working and interacting with people, team work, problem solving, and learning new things is what keeps me stimulated and engaged. I believe these qualifications, in addition to my positive outlook, will help your company attain its goals.
+\\~\\
+Due to my experience with the programming language C# for your project I perfectly match to your internship.
+I would be happy to provide any additional information you require regarding my history.
+I am available for a telephone or personal interview at your convenience and am looking forward to receiving your reply.
+\\
+\vspace{0.1cm}\\
+Yours faithfully,
+\\\\
+\includegraphics[scale=1]{img/covering.jpg}\\
+\textbf{Maximilian Zuleger}
+\end{document}

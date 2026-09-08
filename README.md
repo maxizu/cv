@@ -25,13 +25,17 @@ The easiest way to build without installing anything locally is via Docker (uses
 TeX Live image as CI), using the provided `Dockerfile` and `build.sh`:
 
 ```bash
-./build.sh                          # build cv/2cv.tex + all cover-letters/*.tex present locally
-./build.sh cv/2cv.tex                # build only the CV
-./build.sh cover-letters/template.tex  # build only a specific file
-./build.sh --clean                   # remove all build artifacts (*.pdf, *.aux, *.log, ...)
+./build.sh                             # build the CV only (default)
+./build.sh --cv                        # build the CV only
+./build.sh --cover-letters             # build only the cover letter(s) present locally
+./build.sh --all                       # build the CV and all cover letter(s)
+./build.sh cv/2cv.tex                  # build a specific file explicitly
+./build.sh --clean                     # remove all build artifacts, incl. pdf/
+./build.sh --keep-aux --all            # build but keep LaTeX aux files around
 ```
 
-The resulting PDFs (`2cv.pdf`, `template.pdf`, ...) are written to the repository root.
+The resulting PDFs are moved into `./pdf/` (local only, not tracked in git) and all LaTeX
+auxiliary files (`*.aux`, `*.log`, `*.fls`, ...) are cleaned up automatically afterwards.
 
 ### Manual Docker invocation
 

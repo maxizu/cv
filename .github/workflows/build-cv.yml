@@ -5,6 +5,7 @@ on:
     paths:
       - 'cv/**'
       - 'cover-letters/**'
+      - 'project-reference/**'
       - 'fonts/**'
       - 'img/**'
       - '.github/workflows/build-cv.yml'
@@ -25,10 +26,11 @@ jobs:
           root_file: |
             cv/cv_zuleger.tex
             cover-letters/template.tex
+            project-reference/projects.tex
           latexmk_use_xelatex: true
           continue_on_error: false
         env:
-          TEXINPUTS: ".:./cv//:./cover-letters/moderncv//:"
+          TEXINPUTS: ".:./cv//:./cover-letters/moderncv//:./project-reference//:"
 
       - name: Upload CV PDF artifact
         uses: actions/upload-artifact@v4
@@ -42,6 +44,13 @@ jobs:
         with:
           name: cover-letter-template-pdf
           path: template.pdf
+          retention-days: 90
+
+      - name: Upload project reference PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-reference-pdf
+          path: projects.pdf
           retention-days: 90
 
       - name: Publish CV PDF under a stable "latest" release

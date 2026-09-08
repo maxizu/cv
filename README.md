@@ -19,6 +19,10 @@ cover-letters/          Cover letter documents, based on the moderncv class
                         personal/company-specific letters stay local-only,
                         see .gitignore)
 cover-letters/moderncv/ moderncv class + style files needed by the cover letters
+project-reference/      Project reference sheet listing past projects (name + one-liner,
+                        tech stack, fachliche/überfachliche topics), same design language
+                        as the CV. All styling lives in project-reference.cls; just fill
+                        in project-reference/projects.tex with real project entries.
 fonts/                  Shared font files (Tex Gyre Heros, Lato)
 img/                    Shared images used by both the CV and cover letters
 Dockerfile              Image used for local & reproducible builds (same as CI)
@@ -34,7 +38,8 @@ TeX Live image as CI), using the provided `Dockerfile` and `build.sh`:
 ./build.sh                             # build the CV only (default)
 ./build.sh --cv                        # build the CV only
 ./build.sh --cover-letters             # build only the cover letter(s) present locally
-./build.sh --all                       # build the CV and all cover letter(s)
+./build.sh --project-reference         # build the project reference sheet
+./build.sh --all                       # build the CV, cover letter(s), and project reference
 ./build.sh cv/cv_zuleger.tex                  # build a specific file explicitly
 ./build.sh --clean                     # remove all build artifacts, incl. pdf/
 ./build.sh --keep-aux --all            # build but keep LaTeX aux files around
@@ -63,11 +68,42 @@ sudo tlmgr install collection-latexextra collection-fontsrecommended latexmk
 TEXINPUTS=".:./cv//:./cover-letters/moderncv//:" latexmk -pdf -xelatex cv/cv_zuleger.tex
 ```
 
+## Project reference sheet
+
+`project-reference/projects.tex` lists all past projects (one per employer/engagement):
+project name + one-sentence description, tech stack (rendered as small colored badges),
+and the fachliche/überfachliche topics involved. All design lives in
+`project-reference/project-reference.cls`; the content file only uses these commands:
+
+```latex
+\projectentry{Company -- Project name}{One-sentence description of the project.}
+
+\reflabel{Tech-Stack}
+\techstack{Java, Spring Boot, Kafka, PostgreSQL, Docker, AWS}
+
+\reflabel{Fachliches}
+\begin{itemize}
+  \item ...
+\end{itemize}
+
+\reflabel{Überfachliches}
+\begin{itemize}
+  \item ...
+\end{itemize}
+
+\projectsep   % separator before the next project entry
+```
+
+Just duplicate this block per project and fill in the details.
+
 ## CI
 
-On every push touching `cv/`, `cover-letters/`, `fonts/`, or `img/`, GitHub Actions compiles the CV and
-the generic cover letter template and uploads the resulting PDFs as workflow artifacts
-(`cv-pdf` and `cover-letter-template-pdf`), see `.github/workflows/build-cv.yml`.
+On every push touching `cv/`, `cover-letters/`, `project-reference/`, `fonts/`, or `img/`,
+GitHub Actions compiles the CV, the generic cover letter template, and the project reference
+sheet, uploading the resulting PDFs as workflow artifacts (`cv-pdf`, `cover-letter-template-pdf`,
+and `project-reference-pdf`), see `.github/workflows/build-cv.yml`. The project reference PDF is
+only uploaded as a (private) workflow artifact, not published publicly, since it may contain
+employer/project details.
 
 On every push to `master`, the CV PDF is additionally published as an asset of a `latest` GitHub
 Release, which is created or updated automatically. This gives a permanent, stable download link

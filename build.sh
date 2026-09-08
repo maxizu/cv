@@ -9,7 +9,8 @@
 #   ./build.sh                    # build the CV only (default)
 #   ./build.sh --cv                 # build the CV only
 #   ./build.sh --cover-letters       # build only the cover letter(s)
-#   ./build.sh --all                 # build the CV and all cover letter(s)
+#   ./build.sh --project-reference    # build the project reference sheet
+#   ./build.sh --all                 # build the CV, cover letter(s) and project reference
 #   ./build.sh <file.tex> [...]      # build specific file(s) explicitly
 #   ./build.sh --clean               # just remove build artifacts / pdf/ and exit
 #   ./build.sh --keep-aux ...        # do not clean up LaTeX aux files afterwards
@@ -52,6 +53,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --cv) MODE="cv"; shift ;;
     --cover-letters) MODE="cover-letters"; shift ;;
+    --project-reference) MODE="project-reference"; shift ;;
     --all) MODE="all"; shift ;;
     --clean) clean_all; exit 0 ;;
     --keep-aux) KEEP_AUX=true; shift ;;
@@ -74,11 +76,15 @@ else
         [[ -e "$f" ]] && TARGETS+=("$f")
       done
       ;;
+    project-reference)
+      TARGETS+=("project-reference/projects.tex")
+      ;;
     all)
       TARGETS+=("cv/cv_zuleger.tex")
       for f in cover-letters/*.tex; do
         [[ -e "$f" ]] && TARGETS+=("$f")
       done
+      TARGETS+=("project-reference/projects.tex")
       ;;
   esac
 fi

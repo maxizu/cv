@@ -2,6 +2,9 @@
 
 My CV and cover letters, built with LaTeX (XeLaTeX) and automatically compiled to PDF via GitHub Actions.
 
+**Download the latest CV (stable link, always up to date):**
+https://github.com/maxizu/cv/releases/latest/download/2cv.pdf
+
 Check out my website: https://max-z.de
 
 ## Structure
@@ -62,3 +65,11 @@ TEXINPUTS=".:./cv//:./cover-letters/moderncv//:" latexmk -pdf -xelatex cv/2cv.te
 On every push touching `cv/`, `cover-letters/`, `fonts/`, or `img/`, GitHub Actions compiles the CV and
 the generic cover letter template and uploads the resulting PDFs as workflow artifacts
 (`cv-pdf` and `cover-letter-template-pdf`), see `.github/workflows/build-cv.yml`.
+
+On every push to `master`, the CV PDF is additionally published as an asset of a `latest` GitHub
+Release, which is created or updated automatically. This gives a permanent, stable download link
+that never changes, regardless of how often the CV is rebuilt:
+
+```
+https://github.com/maxizu/cv/releases/latest/download/2cv.pdf
+```

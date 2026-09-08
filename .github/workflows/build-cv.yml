@@ -13,6 +13,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -41,3 +43,21 @@ jobs:
           name: cover-letter-template-pdf
           path: template.pdf
           retention-days: 90
+
+      - name: Publish CV PDF under a stable "latest" release
+        if: github.ref == 'refs/heads/master'
+        uses: ncipollo/release-action@v1
+        with:
+          tag: latest
+          commit: ${{ github.sha }}
+          name: "Latest CV build"
+          allowUpdates: true
+          replacesArtifacts: true
+          removeArtifacts: true
+          makeLatest: true
+          artifacts: "2cv.pdf"
+          body: |
+            Automatically built from the latest commit on `master`.
+
+            Stable download link (never changes):
+            https://github.com/${{ github.repository }}/releases/latest/download/2cv.pdf

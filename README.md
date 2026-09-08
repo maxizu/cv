@@ -2,7 +2,10 @@
 
 My CV and cover letters, built with LaTeX (XeLaTeX) and automatically compiled to PDF via GitHub Actions.
 
-**Download the latest CV (stable link, always up to date):**
+**View the latest CV in the browser (stable link, always up to date):**
+https://maxizu.github.io/cv/2cv.pdf
+
+**Download the latest CV (stable link, forces a download instead of viewing inline):**
 https://github.com/maxizu/cv/releases/latest/download/2cv.pdf
 
 Check out my website: https://max-z.de
@@ -72,4 +75,12 @@ that never changes, regardless of how often the CV is rebuilt:
 
 ```
 https://github.com/maxizu/cv/releases/latest/download/2cv.pdf
+```
+
+It is also deployed to GitHub Pages, which serves the PDF with the correct `Content-Type` so
+browsers display it inline instead of forcing a download (GitHub Release assets always force a
+download, which Pages avoids):
+
+```
+https://maxizu.github.io/cv/2cv.pdf
 ```

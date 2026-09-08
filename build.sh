@@ -67,7 +67,7 @@ else
   TARGETS=()
   case "$MODE" in
     cv)
-      TARGETS+=("cv/2cv.tex")
+      TARGETS+=("cv/cv_zuleger.tex")
       ;;
     cover-letters)
       for f in cover-letters/*.tex; do
@@ -75,7 +75,7 @@ else
       done
       ;;
     all)
-      TARGETS+=("cv/2cv.tex")
+      TARGETS+=("cv/cv_zuleger.tex")
       for f in cover-letters/*.tex; do
         [[ -e "$f" ]] && TARGETS+=("$f")
       done

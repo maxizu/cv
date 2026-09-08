@@ -23,7 +23,7 @@ jobs:
         uses: xu-cheng/latex-action@v4
         with:
           root_file: |
-            cv/2cv.tex
+            cv/cv_zuleger.tex
             cover-letters/template.tex
           latexmk_use_xelatex: true
           continue_on_error: false
@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cv-pdf
-          path: 2cv.pdf
+          path: cv_zuleger.pdf
           retention-days: 90
 
       - name: Upload cover letter template PDF artifact
@@ -55,18 +55,18 @@ jobs:
           replacesArtifacts: true
           removeArtifacts: true
           makeLatest: true
-          artifacts: "2cv.pdf"
+          artifacts: "cv_zuleger.pdf"
           body: |
             Automatically built from the latest commit on `master`.
 
             Stable download link (never changes):
-            https://github.com/${{ github.repository }}/releases/latest/download/2cv.pdf
+            https://github.com/${{ github.repository }}/releases/latest/download/cv_zuleger.pdf
 
       - name: Prepare GitHub Pages site
         if: github.ref == 'refs/heads/master'
         run: |
           mkdir -p site
-          cp 2cv.pdf site/2cv.pdf
+          cp cv_zuleger.pdf site/cv_zuleger.pdf
 
       - name: Upload GitHub Pages artifact
         if: github.ref == 'refs/heads/master'

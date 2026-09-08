@@ -3,17 +3,17 @@
 My CV and cover letters, built with LaTeX (XeLaTeX) and automatically compiled to PDF via GitHub Actions.
 
 **View the latest CV in the browser (stable link, always up to date):**
-https://maxizu.github.io/cv/2cv.pdf
+https://maxizu.github.io/cv/cv_zuleger.pdf
 
 **Download the latest CV (stable link, forces a download instead of viewing inline):**
-https://github.com/maxizu/cv/releases/latest/download/2cv.pdf
+https://github.com/maxizu/cv/releases/latest/download/cv_zuleger.pdf
 
 Check out my website: https://max-z.de
 
 ## Structure
 
 ```
-cv/                     Main CV (2cv.tex, custom "friggeri-cv" class, bibliography)
+cv/                     Main CV (cv_zuleger.tex, custom "friggeri-cv" class, bibliography)
 cover-letters/          Cover letter documents, based on the moderncv class
                         (only the generic template.tex is tracked in git;
                         personal/company-specific letters stay local-only,
@@ -35,7 +35,7 @@ TeX Live image as CI), using the provided `Dockerfile` and `build.sh`:
 ./build.sh --cv                        # build the CV only
 ./build.sh --cover-letters             # build only the cover letter(s) present locally
 ./build.sh --all                       # build the CV and all cover letter(s)
-./build.sh cv/2cv.tex                  # build a specific file explicitly
+./build.sh cv/cv_zuleger.tex                  # build a specific file explicitly
 ./build.sh --clean                     # remove all build artifacts, incl. pdf/
 ./build.sh --keep-aux --all            # build but keep LaTeX aux files around
 ```
@@ -50,7 +50,7 @@ If you don't want to build the image via `build.sh`, you can also call `texlive/
 ```bash
 docker run --rm -e TEXINPUTS=".:./cv//:./cover-letters/moderncv//:" \
   -v "$(pwd)":/work -w /work texlive/texlive:latest \
-  latexmk -pdf -xelatex cv/2cv.tex
+  latexmk -pdf -xelatex cv/cv_zuleger.tex
 ```
 
 ### Local TeX Live installation (no Docker)
@@ -60,7 +60,7 @@ brew install --cask basictex
 sudo tlmgr update --self
 sudo tlmgr install collection-latexextra collection-fontsrecommended latexmk
 
-TEXINPUTS=".:./cv//:./cover-letters/moderncv//:" latexmk -pdf -xelatex cv/2cv.tex
+TEXINPUTS=".:./cv//:./cover-letters/moderncv//:" latexmk -pdf -xelatex cv/cv_zuleger.tex
 ```
 
 ## CI
@@ -74,7 +74,7 @@ Release, which is created or updated automatically. This gives a permanent, stab
 that never changes, regardless of how often the CV is rebuilt:
 
 ```
-https://github.com/maxizu/cv/releases/latest/download/2cv.pdf
+https://github.com/maxizu/cv/releases/latest/download/cv_zuleger.pdf
 ```
 
 It is also deployed to GitHub Pages, which serves the PDF with the correct `Content-Type` so
@@ -82,5 +82,5 @@ browsers display it inline instead of forcing a download (GitHub Release assets 
 download, which Pages avoids):
 
 ```
-https://maxizu.github.io/cv/2cv.pdf
+https://maxizu.github.io/cv/cv_zuleger.pdf
 ```

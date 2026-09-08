@@ -4,8 +4,8 @@
 % Shares the same design language (colors, fonts, header banner) as the
 % "friggeri-cv" class used for the CV, but as a simple single-column
 % document (no sidebar) intended to list multiple project entries:
-% project name + one-sentence description, tech stack, and the
-% fachliche/überfachliche topics/skills involved.
+% project name + one-sentence description, tech stack, and a combined
+% list of responsibilities/highlights (domain work + soft skills).
 %
 % All styling lives here; project-reference/projects.tex should only
 % contain content, filled in via the commands defined below:
@@ -75,17 +75,16 @@ BoldItalicFont=texgyreheros-bolditalic.otf
 \newcommand{\header}[3]{%
   \begin{tikzpicture}[remember picture,overlay]
     \node [rectangle, fill=fillheader, anchor=north, minimum width=\paperwidth, minimum height=3.5cm] (box) at (current page.north){};
-    \node[inner sep=0pt] (logo) at (13,0.6)
-    {\includegraphics[scale=0.5]{img/logo.png}};
-
-    \node [right=-4.9cm] (name) at (box) {%
-      \fontsize{30pt}{62pt}\color{header}%
+    \node [anchor=west, xshift=1.5cm] (name) at (box.west) {%
+      \fontsize{30pt}{36pt}\selectfont\color{header}%
       {\thinfont #1}{\bodyfont  #2}
     };
-    \node [below left=0.3cm of name, xshift=5.4cm] (job) at (name.south) {%
-      \fontsize{14pt}{24pt}\color{pblue}%
+    \node [anchor=south west, yshift=0.15cm] (job) at (name.south west) {%
+      \fontsize{14pt}{18pt}\selectfont\color{pblue}%
       \bodyfont #3%
     };
+    \node [anchor=east, xshift=-1.5cm] (logo) at (box.east)
+    {\includegraphics[scale=0.4]{img/logo.png}};
   \end{tikzpicture}
   \vspace{0.5cm}
   \vspace{-2\parskip}
@@ -112,7 +111,7 @@ BoldItalicFont=texgyreheros-bolditalic.otf
 }
 
 % Small bold colored label used above a tech stack / bullet list,
-% e.g. \reflabel{Tech-Stack}, \reflabel{Fachliches}, \reflabel{Überfachliches}.
+% e.g. \reflabel{Tech-Stack}, \reflabel{Highlights}.
 \newcommand{\reflabel}[1]{%
   \par\vspace{0.2\baselineskip}%
   {\headingfont\color{pblue} #1}%

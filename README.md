@@ -72,7 +72,8 @@ TEXINPUTS=".:./cv//:./cover-letters/moderncv//:" latexmk -pdf -xelatex cv/cv_zul
 
 `project-reference/projects.tex` lists all past projects (one per employer/engagement):
 project name + one-sentence description, tech stack (rendered as small colored badges),
-and the fachliche/überfachliche topics involved. All design lives in
+and a combined list of responsibilities/highlights (domain work + soft skills/methodology,
+in one bullet list rather than split into separate categories). All design lives in
 `project-reference/project-reference.cls`; the content file only uses these commands:
 
 ```latex
@@ -81,20 +82,18 @@ and the fachliche/überfachliche topics involved. All design lives in
 \reflabel{Tech-Stack}
 \techstack{Java, Spring Boot, Kafka, PostgreSQL, Docker, AWS}
 
-\reflabel{Fachliches}
+\reflabel{Highlights}
 \begin{itemize}
-  \item ...
-\end{itemize}
-
-\reflabel{Überfachliches}
-\begin{itemize}
-  \item ...
+  \item Led a 5-person engineering team, introduced Scrum and CI/CD practices
+  \item Designed and implemented the core microservices architecture
 \end{itemize}
 
 \projectsep   % separator before the next project entry
 ```
 
-Just duplicate this block per project and fill in the details.
+Just duplicate this block per project and fill in the details. For the highlights, mix
+domain-specific work and soft-skill/methodology points in a single list, one bullet per
+item, starting with an action verb (e.g. "Led...", "Designed...", "Collaborated with...").
 
 ## CI
 

@@ -76,6 +76,68 @@ jobs:
         run: |
           mkdir -p site
           cp cv_zuleger.pdf site/cv_zuleger.pdf
+          cp projects.pdf site/projects_zuleger.pdf
+          cat > site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Maximilian Zuleger</title>
+            <style>
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                background: #f4f4f4;
+                color: #4D4D4D;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+              }
+              .card {
+                background: #fff;
+                border-radius: 12px;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+                padding: 2.5rem 3rem;
+                max-width: 420px;
+                width: 90%;
+              }
+              h1 {
+                color: #0395DE;
+                font-size: 1.5rem;
+                margin-top: 0;
+              }
+              a.doc-link {
+                display: block;
+                padding: 0.9rem 1.2rem;
+                margin: 0.75rem 0;
+                background: #0395DE;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 8px;
+                font-weight: 600;
+                transition: background 0.15s ease-in-out;
+              }
+              a.doc-link:hover {
+                background: #0277b3;
+              }
+              .subtitle {
+                color: #999;
+                margin-bottom: 1.5rem;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="card">
+              <h1>Maximilian Zuleger</h1>
+              <p class="subtitle">Tech Lead &amp; Full Stack Software Engineer</p>
+              <a class="doc-link" href="cv_zuleger.pdf">📄 View CV</a>
+              <a class="doc-link" href="projects_zuleger.pdf">🗂️ View Project References</a>
+            </div>
+          </body>
+          </html>
+          EOF
 
       - name: Upload GitHub Pages artifact
         if: github.ref == 'refs/heads/master'

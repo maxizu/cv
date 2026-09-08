@@ -2,8 +2,14 @@
 
 My CV and cover letters, built with LaTeX (XeLaTeX) and automatically compiled to PDF via GitHub Actions.
 
+**Landing page with links to both documents:**
+https://maxizu.github.io/cv/
+
 **View the latest CV in the browser (stable link, always up to date):**
 https://maxizu.github.io/cv/cv_zuleger.pdf
+
+**View the latest project references in the browser (stable link):**
+https://maxizu.github.io/cv/projects_zuleger.pdf
 
 **Download the latest CV (stable link, forces a download instead of viewing inline):**
 https://github.com/maxizu/cv/releases/latest/download/cv_zuleger.pdf
@@ -100,9 +106,7 @@ item, starting with an action verb (e.g. "Led...", "Designed...", "Collaborated 
 On every push touching `cv/`, `cover-letters/`, `project-reference/`, `fonts/`, or `img/`,
 GitHub Actions compiles the CV, the generic cover letter template, and the project reference
 sheet, uploading the resulting PDFs as workflow artifacts (`cv-pdf`, `cover-letter-template-pdf`,
-and `project-reference-pdf`), see `.github/workflows/build-cv.yml`. The project reference PDF is
-only uploaded as a (private) workflow artifact, not published publicly, since it may contain
-employer/project details.
+and `project-reference-pdf`), see `.github/workflows/build-cv.yml`.
 
 On every push to `master`, the CV PDF is additionally published as an asset of a `latest` GitHub
 Release, which is created or updated automatically. This gives a permanent, stable download link
@@ -112,10 +116,17 @@ that never changes, regardless of how often the CV is rebuilt:
 https://github.com/maxizu/cv/releases/latest/download/cv_zuleger.pdf
 ```
 
-It is also deployed to GitHub Pages, which serves the PDF with the correct `Content-Type` so
-browsers display it inline instead of forcing a download (GitHub Release assets always force a
-download, which Pages avoids):
+Both the CV and the project reference sheet are also deployed to GitHub Pages (as
+`cv_zuleger.pdf` and `projects_zuleger.pdf`, plus a small `index.html` landing page linking to
+both), which serves them with the correct `Content-Type` so browsers display them inline instead
+of forcing a download (GitHub Release assets always force a download, which Pages avoids):
 
 ```
+https://maxizu.github.io/cv/
 https://maxizu.github.io/cv/cv_zuleger.pdf
+https://maxizu.github.io/cv/projects_zuleger.pdf
 ```
+
+Note: since the project reference sheet may contain descriptions of employer/project details, and
+this repository is public, publishing it to Pages makes it publicly accessible at the URL above -
+the same as the CV.

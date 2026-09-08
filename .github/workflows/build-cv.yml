@@ -35,12 +35,16 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cv-pdf
-          path: cv/2cv.pdf
+          path: 2cv.pdf
           retention-days: 90
 
       - name: Upload cover letter PDFs artifact
         uses: actions/upload-artifact@v4
         with:
           name: cover-letters-pdf
-          path: cover-letters/*.pdf
+          path: |
+            cover_ku.pdf
+            cover_letter_audi.pdf
+            cover_letter_microsoft.pdf
+            template.pdf
           retention-days: 90

@@ -78,23 +78,25 @@
 \RequirePackage[math-style=TeX]{unicode-math}
 
 \newfontfamily\bodyfont
-[BoldFont=texgyreheros-bold.otf,
+[Path=fonts/,
+BoldFont=texgyreheros-bold.otf,
 ItalicFont=texgyreheros-italic.otf,
 BoldItalicFont=texgyreheros-bolditalic.otf]
 {texgyreheros-regular.otf}
-\newfontfamily\thinfont[]{Lato-Hairline.ttf}
-\newfontfamily\headingfont[]{texgyreheros-bold.otf}
+\newfontfamily\thinfont[Path=fonts/]{Lato-Hairline.ttf}
+\newfontfamily\headingfont[Path=fonts/]{texgyreheros-bold.otf}
 
 \defaultfontfeatures{Mapping=tex-text}
 \setmainfont
-[Mapping=tex-text, Color=textcolor,
+[Path=fonts/,
+Mapping=tex-text, Color=textcolor,
 BoldFont=texgyreheros-bold.otf,
 ItalicFont=texgyreheros-italic.otf,
 BoldItalicFont=texgyreheros-bolditalic.otf
 ]
 {texgyreheros-regular.otf}
 
-\setmathfont{texgyreheros-regular.otf}
+\setmathfont[Path=fonts/]{texgyreheros-regular.otf}
 %%%
 
 %%%%%%%%%%

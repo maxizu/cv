@@ -3,12 +3,9 @@ name: Build CV PDF
 on:
   push:
     paths:
-      - '2cv.tex'
-      - '*.cls'
-      - '*.sty'
-      - 'sty/**'
-      - '*.otf'
-      - '*.ttf'
+      - 'cv/**'
+      - 'cover-letters/**'
+      - 'fonts/**'
       - 'img/**'
       - '.github/workflows/build-cv.yml'
   workflow_dispatch: {}
@@ -23,12 +20,27 @@ jobs:
       - name: Compile LaTeX (xelatex)
         uses: xu-cheng/latex-action@v4
         with:
-          root_file: 2cv.tex
+          root_file: |
+            cv/2cv.tex
+            cover-letters/cover_ku.tex
+            cover-letters/cover_letter_audi.tex
+            cover-letters/cover_letter_microsoft.tex
+            cover-letters/template.tex
           latexmk_use_xelatex: true
+          continue_on_error: false
+        env:
+          TEXINPUTS: ".:./cv//:./cover-letters/moderncv//:"
 
-      - name: Upload PDF artifact
+      - name: Upload CV PDF artifact
         uses: actions/upload-artifact@v4
         with:
-          name: 2cv-pdf
-          path: 2cv.pdf
+          name: cv-pdf
+          path: cv/2cv.pdf
+          retention-days: 90
+
+      - name: Upload cover letter PDFs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cover-letters-pdf
+          path: cover-letters/*.pdf
           retention-days: 90

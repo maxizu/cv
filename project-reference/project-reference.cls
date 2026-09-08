@@ -79,14 +79,14 @@ BoldItalicFont=texgyreheros-bolditalic.otf
       \fontsize{30pt}{36pt}\selectfont\color{header}%
       {\thinfont #1}{\bodyfont  #2}
     };
-    \node [anchor=south west, yshift=0.15cm] (job) at (name.south west) {%
+    \node [anchor=south west, yshift=-0.8cm] (job) at (name.south west) {%
       \fontsize{14pt}{18pt}\selectfont\color{pblue}%
       \bodyfont #3%
     };
     \node [anchor=east, xshift=-1.5cm] (logo) at (box.east)
     {\includegraphics[scale=0.4]{img/logo.png}};
   \end{tikzpicture}
-  \vspace{0.5cm}
+  \vspace{2cm}
   \vspace{-2\parskip}
 }
 
@@ -103,8 +103,14 @@ BoldItalicFont=texgyreheros-bolditalic.otf
 }
 
 % Project entry heading: project name + short one-sentence description.
+% Everything from \projectentry up to the matching \projectsep is wrapped
+% in a minipage, i.e. treated as a single unbreakable block: if it doesn't
+% fit in the remaining space on the current page, LaTeX automatically
+% pushes the whole block to the next page instead of splitting a project
+% across a page break.
 \newcommand{\projectentry}[2]{%
   \par\vspace{0.6\baselineskip}%
+  \begin{minipage}[t]{\textwidth}%
   {\Large\headingfont\color{headercolor} #1}\\[2pt]%
   {\normalsize\itshape\color{pblue} #2}%
   \par\vspace{0.25\baselineskip}%
@@ -118,11 +124,13 @@ BoldItalicFont=texgyreheros-bolditalic.otf
   \par\vspace{0.1\baselineskip}%
 }
 
-% Visual separator between two project entries.
+% Closes the minipage opened by \projectentry and draws the visual
+% separator between two project entries.
 \newcommand{\projectsep}{%
-  \par\vspace{0.5\baselineskip}%
+  \end{minipage}%
+  \par\vspace{2\baselineskip}%
   {\color{lightgray}\hrule}%
-  \par\vspace{0.5\baselineskip}%
+  \par\vspace{1\baselineskip}%
 }
 
 \pagestyle{empty}
@@ -138,8 +146,19 @@ BoldItalicFont=texgyreheros-bolditalic.otf
 
 % Renders a comma-separated list of technologies as a row of badges,
 % e.g. \techstack{Java, Spring Boot, Kafka, PostgreSQL, Docker, AWS}
+%
+% The badges are rigid boxes (tikz pictures), which don't have any
+% stretch/shrink of their own. In fully-justified (default) paragraphs,
+% LaTeX sometimes still forces one more badge onto a line even if it just
+% barely doesn't fit, producing an "Overfull \hbox" that visibly runs past
+% the page margin instead of wrapping to the next line. Setting this list
+% ragged-right (via \raggedright, scoped locally) gives the line-breaker
+% effectively infinite shrink at the end of each line, so it always simply
+% wraps to a new line instead of ever overflowing.
 \newcommand{\techstack}[1]{%
-  \foreach \tech in {#1} {\techbadge{\tech}\ }%
+  \begingroup\raggedright
+  \foreach \tech in {#1} {\techbadge{\tech}\hspace{3pt plus 2pt minus 1pt}}%
+  \par\endgroup
 }
 
 %%%%%%%%%%%%%%%%%%%%

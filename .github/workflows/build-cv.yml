@@ -22,9 +22,6 @@ jobs:
         with:
           root_file: |
             cv/2cv.tex
-            cover-letters/cover_ku.tex
-            cover-letters/cover_letter_audi.tex
-            cover-letters/cover_letter_microsoft.tex
             cover-letters/template.tex
           latexmk_use_xelatex: true
           continue_on_error: false
@@ -38,13 +35,9 @@ jobs:
           path: 2cv.pdf
           retention-days: 90
 
-      - name: Upload cover letter PDFs artifact
+      - name: Upload cover letter template PDF artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cover-letters-pdf
-          path: |
-            cover_ku.pdf
-            cover_letter_audi.pdf
-            cover_letter_microsoft.pdf
-            template.pdf
+          name: cover-letter-template-pdf
+          path: template.pdf
           retention-days: 90

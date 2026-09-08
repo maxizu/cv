@@ -9,56 +9,52 @@ Check out my website: https://max-z.de
 ```
 cv/                     Main CV (2cv.tex, custom "friggeri-cv" class, bibliography)
 cover-letters/          Cover letter documents, based on the moderncv class
+                        (only the generic template.tex is tracked in git;
+                        personal/company-specific letters stay local-only,
+                        see .gitignore)
 cover-letters/moderncv/ moderncv class + style files needed by the cover letters
 fonts/                  Shared font files (Tex Gyre Heros, Lato)
 img/                    Shared images used by both the CV and cover letters
+Dockerfile              Image used for local & reproducible builds (same as CI)
+build.sh                Convenience script to build all PDFs via Docker
 ```
 
 ## Building locally
 
-You need a XeLaTeX-capable TeX distribution (e.g. [MacTeX](https://tug.org/mactex/), BasicTeX, or TeX Live).
-The easiest way to build without installing anything locally is via Docker, using the same image as CI.
-
-### Option A: Docker (recommended, no local install needed)
-
-Build the CV:
+The easiest way to build without installing anything locally is via Docker (uses the same
+TeX Live image as CI), using the provided `Dockerfile` and `build.sh`:
 
 ```bash
-docker run --rm -e TEXINPUTS=".:./cv//:" \
+./build.sh                          # build cv/2cv.tex + all cover-letters/*.tex present locally
+./build.sh cv/2cv.tex                # build only the CV
+./build.sh cover-letters/template.tex  # build only a specific file
+./build.sh --clean                   # remove all build artifacts (*.pdf, *.aux, *.log, ...)
+```
+
+The resulting PDFs (`2cv.pdf`, `template.pdf`, ...) are written to the repository root.
+
+### Manual Docker invocation
+
+If you don't want to build the image via `build.sh`, you can also call `texlive/texlive:latest` directly:
+
+```bash
+docker run --rm -e TEXINPUTS=".:./cv//:./cover-letters/moderncv//:" \
   -v "$(pwd)":/work -w /work texlive/texlive:latest \
   latexmk -pdf -xelatex cv/2cv.tex
 ```
 
-Build a cover letter (e.g. the Audi one):
-
-```bash
-docker run --rm -e TEXINPUTS=".:./cover-letters/moderncv//:" \
-  -v "$(pwd)":/work -w /work texlive/texlive:latest \
-  latexmk -pdf -xelatex cover-letters/cover_letter_audi.tex
-```
-
-The resulting PDF is written next to the source `.tex` file (`cv/2cv.pdf`, `cover-letters/cover_letter_audi.pdf`, ...).
-
-Clean up auxiliary build files afterwards:
-
-```bash
-find . -maxdepth 2 \( -name "*.aux" -o -name "*.log" -o -name "*.pdf" -o -name "*.fls" \
-  -o -name "*.out" -o -name "*.bbl" -o -name "*.bcf*" -o -name "*.run.xml" -o -name "*.xdv" \
-  -o -name "*.blg" -o -name "*.fdb_latexmk" -o -name "*.synctex.gz" \) -delete
-```
-
-### Option B: Local TeX Live installation
+### Local TeX Live installation (no Docker)
 
 ```bash
 brew install --cask basictex
 sudo tlmgr update --self
 sudo tlmgr install collection-latexextra collection-fontsrecommended latexmk
 
-latexmk -pdf -xelatex cv/2cv.tex
+TEXINPUTS=".:./cv//:./cover-letters/moderncv//:" latexmk -pdf -xelatex cv/2cv.tex
 ```
 
 ## CI
 
 On every push touching `cv/`, `cover-letters/`, `fonts/`, or `img/`, GitHub Actions compiles the CV and
-all cover letters and uploads the resulting PDFs as workflow artifacts (`cv-pdf` and `cover-letters-pdf`),
-see `.github/workflows/build-cv.yml`.
+the generic cover letter template and uploads the resulting PDFs as workflow artifacts
+(`cv-pdf` and `cover-letter-template-pdf`), see `.github/workflows/build-cv.yml`.

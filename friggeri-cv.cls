@@ -119,7 +119,7 @@ BoldItalicFont=texgyreheros-bolditalic.otf
       \fontsize{30pt}{62pt}\color{header}%
       {\thinfont #1}{\bodyfont  #2}
     };
-    \node [below left=1cm of name] (job) at (name.south) {%
+    \node [below left=0.3cm of name, xshift=5.4cm] (job) at (name.south) {%
       \fontsize{14pt}{24pt}\color{pblue}%
       \bodyfont #3%
     };

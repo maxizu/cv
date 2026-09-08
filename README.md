@@ -5,14 +5,11 @@ My CV and cover letters, built with LaTeX (XeLaTeX) and automatically compiled t
 **Landing page with links to both documents:**
 https://maxizu.github.io/cv/
 
-**View the latest CV in the browser (stable link, always up to date):**
+**View the latest CV in the browser:**
 https://maxizu.github.io/cv/cv_zuleger.pdf
 
-**View the latest project references in the browser (stable link):**
+**View the latest project references in the browser:**
 https://maxizu.github.io/cv/projects_zuleger.pdf
-
-**Download the latest CV (stable link, forces a download instead of viewing inline):**
-https://github.com/maxizu/cv/releases/latest/download/cv_zuleger.pdf
 
 Check out my website: https://max-z.de
 

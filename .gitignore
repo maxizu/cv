@@ -281,9 +281,9 @@ TSWLatexianTemp*
 pdf/
 
 # Personal/company-specific cover letters (not for the public repo)
-cover-letters/cover_ku.tex
-cover-letters/cover_letter_audi.tex
-cover-letters/cover_letter_microsoft.tex
+cover-letters/cover-ignore/cover_ku.tex
+cover-letters/cover-ignore/cover_letter_audi.tex
+cover-letters/cover-ignore/cover_letter_microsoft.tex
 
 # Editor / IDE
 .idea/

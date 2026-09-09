@@ -102,17 +102,19 @@ BoldItalicFont=texgyreheros-bolditalic.otf
   \par\vspace{\parskip}%
 }
 
-% Project entry heading: project name + short one-sentence description.
+% Project entry heading: project name, employer (to cross-reference the CV),
+% and a short one-sentence description.
 % Everything from \projectentry up to the matching \projectsep is wrapped
 % in a minipage, i.e. treated as a single unbreakable block: if it doesn't
 % fit in the remaining space on the current page, LaTeX automatically
 % pushes the whole block to the next page instead of splitting a project
 % across a page break.
-\newcommand{\projectentry}[2]{%
+\newcommand{\projectentry}[3]{%
   \par\vspace{0.6\baselineskip}%
   \begin{minipage}[t]{\textwidth}%
-  {\Large\headingfont\color{headercolor} #1}\\[2pt]%
-  {\normalsize\itshape\color{pblue} #2}%
+  {\Large\headingfont\color{headercolor} #1}\\[1pt]%
+  {\footnotesize\color{lightgray} @ #2}\\[3pt]%
+  {\normalsize\itshape\color{pblue} #3}%
   \par\vspace{0.25\baselineskip}%
 }
 

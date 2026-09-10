@@ -104,13 +104,30 @@ BoldItalicFont=texgyreheros-bolditalic.otf
 
 % Project entry heading: project name, employer (to cross-reference the CV),
 % and a short one-sentence description.
-% Everything from \projectentry up to the matching \projectsep is wrapped
-% in a minipage, i.e. treated as a single unbreakable block: if it doesn't
-% fit in the remaining space on the current page, LaTeX automatically
-% pushes the whole block to the next page instead of splitting a project
-% across a page break.
+%
+% Everything from \projectentry up to the matching \projectsep is first
+% captured into a box (not typeset directly), so its exact height is known
+% before it's placed on the page. \projectsep then decides how to place it:
+%   - if it doesn't fit the remaining space on the current page at all,
+%     it starts a fresh page (no divider, since it's the first thing there)
+%   - if it fits together with the small divider rule above it (and this
+%     isn't the very first project, and we're not already at the very top
+%     of the page), the divider is drawn and the project follows right
+%     after it on the same page
+%   - otherwise (e.g. it's the first project, or we're at the top of a
+%     fresh page already) it's placed without a leading divider
+% This avoids ever showing the divider rule stranded alone at the very
+% top or bottom of a page.
+\newsavebox{\pr@box}
+\newif\ifpr@needdivider
+\pr@needdividerfalse
+\newdimen\pr@boxht
+\newdimen\pr@avail
+\newdimen\pr@dividerht
+\pr@dividerht=1.6\baselineskip
+
 \newcommand{\projectentry}[3]{%
-  \par\vspace{0.6\baselineskip}%
+  \begin{lrbox}{\pr@box}%
   \begin{minipage}[t]{\textwidth}%
   {\Large\headingfont\color{headercolor} #1}\\[1pt]%
   {\footnotesize\color{lightgray} @ #2}\\[3pt]%
@@ -126,13 +143,44 @@ BoldItalicFont=texgyreheros-bolditalic.otf
   \par\vspace{0.1\baselineskip}%
 }
 
-% Closes the minipage opened by \projectentry and draws the visual
-% separator between two project entries.
+% Closes the box opened by \projectentry and places it on the page,
+% drawing a divider above it only if it lands right after another
+% project on the same page (see the comment above \projectentry).
 \newcommand{\projectsep}{%
   \end{minipage}%
-  \par\vspace{2\baselineskip}%
-  {\color{lightgray}\hrule}%
-  \par\vspace{1\baselineskip}%
+  \end{lrbox}%
+  \pr@boxht=\ht\pr@box \advance\pr@boxht by \dp\pr@box
+  \pr@avail=\pagegoal \advance\pr@avail by -\pagetotal
+  \par
+  \ifpr@needdivider
+    \ifdim\pagetotal=0pt
+      % Fresh page (previous project didn't fit and was pushed here) - no divider.
+      \usebox{\pr@box}%
+    \else
+      \advance\pr@boxht by \pr@dividerht
+      \ifdim\pr@boxht<\pr@avail
+        \vspace{0.6\baselineskip}{\color{lightgray}\hrule}\vspace{0.6\baselineskip}%
+        \usebox{\pr@box}%
+      \else
+        \advance\pr@boxht by -\pr@dividerht
+        \ifdim\pr@boxht<\pr@avail
+          \usebox{\pr@box}%
+        \else
+          \newpage
+          \usebox{\pr@box}%
+        \fi
+      \fi
+    \fi
+  \else
+    \ifdim\pr@boxht<\pr@avail
+      \usebox{\pr@box}%
+    \else
+      \newpage
+      \usebox{\pr@box}%
+    \fi
+  \fi
+  \pr@needdividertrue
+  \par\vspace{0.6\baselineskip}%
 }
 
 \pagestyle{empty}
